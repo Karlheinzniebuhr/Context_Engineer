@@ -253,7 +253,7 @@ By following these instructions, you will create a high-quality implementation g
         
         return tree_lines
 
-    def build_context(self, file_paths, output_path="combined_context.md", copy_clipboard=True):
+    def build_context(self, file_paths, output_path=None, copy_clipboard=True):
         """Combines files and system prompt into a single context file."""
         print(f"🔧 Building context with {len(file_paths)} files...")
         
@@ -302,14 +302,19 @@ By following these instructions, you will create a high-quality implementation g
         
         full_content = "\n\n".join([self.system_prompt] + header + directory_tree + file_manifest + file_contents)
         
-        try:
-            with open(output_path, 'w', encoding='utf-8') as f:
-                f.write(full_content)
-            print(f"\n🎯 SUCCESS: Context file written to: {output_path}")
-            return True
-        except Exception as e:
-            print(f"❌ Error writing output file: {e}")
-            return False
+        # Only write output file if path is specified
+        if output_path:
+            try:
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(full_content)
+                print(f"\n🎯 SUCCESS: Context file written to: {output_path}")
+            except Exception as e:
+                print(f"❌ Error writing output file: {e}")
+                return False
+        else:
+            print("\n📋 Context generated (no output file specified - content available in clipboard)")
+        
+        return full_content
 
 def main():
     parser = argparse.ArgumentParser(
@@ -323,7 +328,7 @@ Examples:
     )
     
     parser.add_argument('patterns', nargs='+', help='File patterns to include (e.g., "src/*.py", "docs/README.md")')
-    parser.add_argument('-o', '--output', default='combined_context.md', help='Output file name')
+    parser.add_argument('-o', '--output', help='Output file name (optional - if not specified, only copies to clipboard)')
     
     parser.add_argument('-n', '--no-clipboard', action='store_true', help='Disable copying result to clipboard')
 
@@ -340,20 +345,26 @@ Examples:
     file_paths = sorted(list(set(file_paths)))
     
     builder = ContextBuilder()
-    success = builder.build_context(file_paths, args.output)
+    result = builder.build_context(file_paths, args.output)
 
-    if success and not args.no_clipboard:
-        try:
-            with open(args.output, 'r', encoding='utf-8') as f:
-                content = f.read()
-            if builder.copy_to_clipboard(content):
-                print("🔗 Content copied to clipboard!")
-            else:
-                print("⚠️ Clipboard copy failed (clipboard library not available)")
-        except Exception as e:
-            print(f"❌ Error reading file for clipboard: {e}")
+    if result and not args.no_clipboard:
+        # If we have an output file, read from it; otherwise use the returned content
+        if args.output:
+            try:
+                with open(args.output, 'r', encoding='utf-8') as f:
+                    content = f.read()
+            except Exception as e:
+                print(f"❌ Error reading file for clipboard: {e}")
+                sys.exit(1)
+        else:
+            content = result
+        
+        if builder.copy_to_clipboard(content):
+            print("🔗 Content copied to clipboard!")
+        else:
+            print("⚠️ Clipboard copy failed (clipboard library not available)")
     
-    if success:
+    if result:
         print(f"\n🎉 Context built successfully!")
     else:
         sys.exit(1)

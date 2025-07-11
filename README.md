@@ -13,7 +13,10 @@ Transform your codebase into AI-ready implementation guides—in one command.
 # Install (Python 3.6+)
 pip install context-builder
 
-# Combine files into a single AI-ready guide
+# Combine files - copies to clipboard by default
+ctx src/*.py README.md
+
+# Or create an output file
 ctx src/*.py README.md -o project_context.md
 ```
 
@@ -25,7 +28,7 @@ ctx src/*.py README.md -o project_context.md
 - 🌐 Flexible Input: Files, directories, and glob patterns
 - 🌳 **NEW!** Directory Tree: Beautiful ASCII tree visualization of project structure
 - 📋 Clean Markdown: Syntax-highlighted, ready for AI agents
-- 📋 Auto-Clipboard: Copies output to clipboard by default
+- 📋 Auto-Clipboard: Copies output to clipboard by default (no file created unless specified)
 - ⚡ Zero Dependencies: Pure Python, no extra libraries
 - 🤖 AI-Optimized: System prompt tuned for flawless guides
 
@@ -62,6 +65,19 @@ Total files: 3
 ```
 
 ---
+
+## 🎛️ Usage Options
+
+```bash
+# Clipboard only (default behavior)
+ctx src/*.py README.md
+
+# Create output file
+ctx src/*.py README.md -o context.md
+
+# Disable clipboard copying
+ctx src/*.py README.md -o context.md --no-clipboard
+```
 
 **Try it now** → `ctx --help`
 
