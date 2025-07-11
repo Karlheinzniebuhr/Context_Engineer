@@ -23,6 +23,7 @@ setup(
     url='https://github.com/yourusername/context-builder',
     py_modules=['context_builder'],
     python_requires='>=3.6',
+    license='MIT',
     entry_points={
         'console_scripts': [
             'context_builder=context_builder:main',
@@ -32,7 +33,6 @@ setup(
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -44,9 +44,4 @@ setup(
         'Topic :: Text Processing :: Markup :: Markdown',
     ],
     keywords='ai development documentation context builder implementation guide',
-    project_urls={
-        'Bug Reports': 'https://github.com/yourusername/context-builder/issues',
-        'Source': 'https://github.com/yourusername/context-builder',
-        'Documentation': 'https://github.com/yourusername/context-builder#readme',
-    },
 )

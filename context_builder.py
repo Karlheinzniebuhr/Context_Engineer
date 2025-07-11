@@ -182,6 +182,77 @@ By following these instructions, you will create a high-quality implementation g
         except Exception:
             return False
     
+    def generate_directory_tree(self, file_paths):
+        """Generate a beautiful directory tree structure from file paths."""
+        from pathlib import Path
+        import os
+        
+        # Get relative paths and organize them
+        tree_structure = {}
+        base_path = Path.cwd()
+        
+        for file_path in file_paths:
+            path = Path(file_path)
+            # Get relative path from current directory
+            try:
+                rel_path = path.relative_to(base_path)
+            except ValueError:
+                # If file is outside current directory, use absolute path
+                rel_path = path
+            
+            # Build tree structure
+            parts = rel_path.parts
+            current_level = tree_structure
+            
+            for part in parts[:-1]:  # All parts except the file name
+                if part not in current_level:
+                    current_level[part] = {}
+                current_level = current_level[part]
+            
+            # Add the file
+            current_level[parts[-1]] = None  # None indicates it's a file
+        
+        def render_tree(structure, prefix="", is_last=True):
+            """Recursively render the tree structure."""
+            lines = []
+            items = sorted(structure.items(), key=lambda x: (x[1] is None, x[0]))  # Directories first, then files
+            
+            for i, (name, subtree) in enumerate(items):
+                is_last_item = i == len(items) - 1
+                
+                # Choose the appropriate tree characters
+                if is_last_item:
+                    current_prefix = "└── "
+                    next_prefix = "    "
+                else:
+                    current_prefix = "├── "
+                    next_prefix = "│   "
+                
+                # Add the current item
+                if subtree is None:  # It's a file
+                    lines.append(f"{prefix}{current_prefix}{name}")
+                else:  # It's a directory
+                    lines.append(f"{prefix}{current_prefix}{name}/")
+                    # Recursively add subdirectories and files
+                    subtree_lines = render_tree(subtree, prefix + next_prefix, is_last_item)
+                    lines.extend(subtree_lines)
+            
+            return lines
+        
+        if not tree_structure:
+            return ["No files found"]
+        
+        # If there's only one root directory, start from there
+        if len(tree_structure) == 1 and list(tree_structure.values())[0] is not None:
+            root_name = list(tree_structure.keys())[0]
+            root_structure = tree_structure[root_name]
+            tree_lines = [f"{root_name}/"]
+            tree_lines.extend(render_tree(root_structure, ""))
+        else:
+            tree_lines = render_tree(tree_structure)
+        
+        return tree_lines
+
     def build_context(self, file_paths, output_path="combined_context.md", copy_clipboard=True):
         """Combines files and system prompt into a single context file."""
         print(f"🔧 Building context with {len(file_paths)} files...")
@@ -195,13 +266,25 @@ By following these instructions, you will create a high-quality implementation g
             "---"
         ]
         
+        # Generate directory tree
+        directory_tree = ["## Directory Structure"]
+        directory_tree.append("```")
+        tree_lines = self.generate_directory_tree([info['path'] for info in valid_files])
+        directory_tree.extend(tree_lines)
+        directory_tree.append("```")
+        
         file_manifest = ["## File Manifest"]
         categories = {}
         for info in valid_files:
             cat = info['category']
             if cat not in categories:
                 categories[cat] = []
-            categories[cat].append(f"- `{info['name']}` ({info['lines']} lines)")
+            # Include relative path for better context
+            try:
+                rel_path = Path(info['path']).relative_to(Path.cwd())
+            except ValueError:
+                rel_path = Path(info['path'])
+            categories[cat].append(f"- `{rel_path}` ({info['lines']} lines)")
         
         for category, files in categories.items():
             file_manifest.append(f"### {category}")
@@ -209,10 +292,15 @@ By following these instructions, you will create a high-quality implementation g
         
         file_contents = []
         for i, info in enumerate(valid_files, 1):
-            file_contents.append(f"---\n### File {i}: `{info['name']}`\n\n```" + info.get('type','').lstrip('.') + f"\n{info['content']}\n```")
+            # Use relative path in file headers for better readability
+            try:
+                rel_path = Path(info['path']).relative_to(Path.cwd())
+            except ValueError:
+                rel_path = Path(info['path'])
+            file_contents.append(f"---\n### File {i}: `{rel_path}`\n\n```" + info.get('type','').lstrip('.') + f"\n{info['content']}\n```")
 
         
-        full_content = "\n\n".join([self.system_prompt] + header + file_manifest + file_contents)
+        full_content = "\n\n".join([self.system_prompt] + header + directory_tree + file_manifest + file_contents)
         
         try:
             with open(output_path, 'w', encoding='utf-8') as f:
