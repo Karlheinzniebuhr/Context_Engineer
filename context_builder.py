@@ -20,6 +20,17 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
+# Clipboard functionality - gracefully handles missing libraries
+try:
+    import pyperclip
+    CLIPBOARD_AVAILABLE = True
+except ImportError:
+    try:
+        import tkinter as tk
+        CLIPBOARD_AVAILABLE = True
+    except ImportError:
+        CLIPBOARD_AVAILABLE = False
+
 class ContextBuilder:
     """
     Combines files and a system prompt to build a context file for AI interaction.
@@ -148,7 +159,30 @@ By following these instructions, you will create a high-quality implementation g
         except Exception as e:
             return {'path': file_path, 'name': path.name, 'error': str(e)}
     
-    def build_context(self, file_paths, output_path="combined_context.md"):
+    def copy_to_clipboard(self, content):
+        """Copy content to clipboard using available methods."""
+        if not CLIPBOARD_AVAILABLE:
+            return False
+            
+        try:
+            # Try pyperclip first (most reliable)
+            if 'pyperclip' in sys.modules:
+                pyperclip.copy(content)
+                return True
+            
+            # Fallback to tkinter
+            root = tk.Tk()
+            root.withdraw()  # Hide the window
+            root.clipboard_clear()
+            root.clipboard_append(content)
+            root.update()  # Ensure clipboard is updated
+            root.destroy()
+            return True
+            
+        except Exception:
+            return False
+    
+    def build_context(self, file_paths, output_path="combined_context.md", copy_clipboard=True):
         """Combines files and system prompt into a single context file."""
         print(f"🔧 Building context with {len(file_paths)} files...")
         
@@ -203,6 +237,8 @@ Examples:
     parser.add_argument('patterns', nargs='+', help='File patterns to include (e.g., "src/*.py", "docs/README.md")')
     parser.add_argument('-o', '--output', default='combined_context.md', help='Output file name')
     
+    parser.add_argument('-n', '--no-clipboard', action='store_true', help='Disable copying result to clipboard')
+
     args = parser.parse_args()
     
     file_paths = []
@@ -216,7 +252,20 @@ Examples:
     file_paths = sorted(list(set(file_paths)))
     
     builder = ContextBuilder()
-    if builder.build_context(file_paths, args.output):
+    success = builder.build_context(file_paths, args.output)
+
+    if success and not args.no_clipboard:
+        try:
+            with open(args.output, 'r', encoding='utf-8') as f:
+                content = f.read()
+            if builder.copy_to_clipboard(content):
+                print("🔗 Content copied to clipboard!")
+            else:
+                print("⚠️ Clipboard copy failed (clipboard library not available)")
+        except Exception as e:
+            print(f"❌ Error reading file for clipboard: {e}")
+    
+    if success:
         print(f"\n🎉 Context built successfully!")
     else:
         sys.exit(1)

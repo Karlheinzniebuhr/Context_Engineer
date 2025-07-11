@@ -24,6 +24,7 @@ ctx src/*.py README.md -o project_context.md
 - 🧠 Smart File Detection: Auto-categorizes and enriches metadata
 - 🌐 Flexible Input: Files, directories, and glob patterns
 - 📋 Clean Markdown: Syntax-highlighted, ready for AI agents
+- 📋 Auto-Clipboard: Copies output to clipboard by default
 - ⚡ Zero Dependencies: Pure Python, no extra libraries
 - 🤖 AI-Optimized: System prompt tuned for flawless guides
 
