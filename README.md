@@ -153,6 +153,50 @@ python context_builder.py "docs/*.md" README.md
 
 ---
 
+## 🏗️ **Repository Layout (Abridged)**
+
+One of Context Builder's most **amazing features** is its intelligent repository layout generation! It automatically creates a beautiful, structured overview of your project's architecture.
+
+<div align="center">
+
+### 🎨 **Visual Project Structure**
+
+```text
+📁 MyAwesomeProject/
+├─ 📂 src/
+│  ├─ 🐍 main.py              # Core application logic
+│  ├─ 🔧 utils.py             # Utility functions  
+│  ├─ 📊 data_processor.py    # Data processing module
+│  └─ 🌐 api_client.py        # External API integration
+├─ 📂 tests/
+│  ├─ 🧪 test_main.py         # Main logic tests
+│  └─ 🔍 test_utils.py        # Utility function tests
+├─ 📂 docs/
+│  ├─ 📖 installation.md      # Setup instructions
+│  └─ 🎯 usage_guide.md       # How-to documentation
+├─ 📋 requirements.txt         # Dependencies
+├─ ⚙️ config.json             # Configuration file
+└─ 📚 README.md               # Project overview
+```
+
+</div>
+
+### ✨ **What makes it special:**
+
+🔍 **Smart categorization** - Automatically detects file types and purposes  
+📊 **Line count analysis** - Shows relative file sizes for quick understanding  
+🎨 **Beautiful formatting** - Clean, readable structure with emojis and descriptions  
+📱 **Responsive layout** - Works perfectly in any markdown viewer  
+🤖 **AI-optimized** - Helps AI assistants understand your project structure instantly
+
+<div align="center">
+
+*"This feature alone has saved me hours of explaining project structure to AI assistants!"*
+
+</div>
+
+---
+
 ## 🎯 **Perfect For**
 
 <div align="center">
