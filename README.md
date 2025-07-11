@@ -157,43 +157,35 @@ python context_builder.py "docs/*.md" README.md
 
 One of Context Builder's most **amazing features** is its intelligent repository layout generation! It automatically creates a beautiful, structured overview of your project's architecture.
 
-<div align="center">
-
-### 🎨 **Visual Project Structure**
+### 🎨 **Example Output**
 
 ```
-📦 MyProject
-├─ 📁 src
-│  ├─ 🐍 main.py
-│  ├─ 🛠️ utils.py
-│  ├─ 📊 processor.py
-│  └─ 🌐 api.py
-├─ 📁 tests
-│  ├─ ✅ test_main.py
-│  └─ 🔍 test_utils.py
-├─ 📁 docs
-│  ├─ 📖 install.md
-│  └─ 🎯 usage.md
-├─ 📃 requirements.txt
-├─ ⚙️ config.json
-└─ 📝 README.md
+MyAwesomeProject/
+├── src/                     # 🐍 Source code
+│   ├── main.py             # Core application
+│   ├── utils.py            # Helper functions
+│   ├── data_processor.py   # Data handling
+│   └── api_client.py       # External APIs
+├── tests/                   # ✅ Test suite
+│   ├── test_main.py
+│   └── test_utils.py
+├── docs/                    # 📖 Documentation
+│   ├── installation.md
+│   └── usage_guide.md
+├── requirements.txt         # 📦 Dependencies
+├── config.json             # ⚙️ Configuration
+└── README.md               # 📝 Project info
 ```
 
-</div>
+### ✨ **What makes it special**
 
-### ✨ **What makes it special:**
+- 🔍 **Smart categorization** - Automatically detects file types and purposes
+- 📊 **Line count analysis** - Shows relative file sizes for quick understanding
+- 🎨 **Beautiful formatting** - Clean, readable structure with helpful comments
+- 📱 **Universal compatibility** - Renders perfectly everywhere
+- 🤖 **AI-optimized** - Helps AI assistants understand your project instantly
 
-🔍 **Smart categorization** - Automatically detects file types and purposes  
-📊 **Line count analysis** - Shows relative file sizes for quick understanding  
-🎨 **Beautiful formatting** - Clean, readable structure with emojis and descriptions  
-📱 **Responsive layout** - Works perfectly in any markdown viewer  
-🤖 **AI-optimized** - Helps AI assistants understand your project structure instantly
-
-<div align="center">
-
-*"This feature alone has saved me hours of explaining project structure to AI assistants!"*
-
-</div>
+> *"This feature alone has saved me hours of explaining project structure to AI assistants!"*
 
 ---
 
