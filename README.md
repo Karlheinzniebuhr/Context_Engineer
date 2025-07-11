@@ -64,22 +64,51 @@ Built from analyzing **hundreds** of AI system prompts including:
 
 ## 🚀 **Quick Start**
 
-### ⚡ **Installation**
+### ⚡ **Installation via pip**
+
+#### Requirements
+- Python 3.6 or higher
+
+#### Steps
 
 ```bash
-# Clone the repository
+# Step 1: Clone the repository
 git clone https://github.com/yourusername/context-builder.git
 cd context-builder
 
-# That's it! No dependencies needed 🎉
+# Step 2: Install using pip (makes it directly executable!)
+pip install -e .
 ```
+
+After installation, use the `context_builder` command from anywhere, or its short alias `ctx`!
 
 ### 🎮 **Basic Usage**
 
+<table>
+<tr>
+<td width="50%">
+
+#### ✨ **After pip install** (Recommended)
 ```bash
-# Combine files for AI processing
+# Use the direct command
+context_builder file1.py file2.md file3.txt
+
+# Or use the short alias
+ctx file1.py file2.md file3.txt
+```
+
+</td>
+<td width="50%">
+
+#### 🐍 **Direct Python execution**
+```bash
+# Traditional method
 python context_builder.py file1.py file2.md file3.txt
 ```
+
+</td>
+</tr>
+</table>
 
 ### 🎨 **Advanced Examples**
 
@@ -87,7 +116,10 @@ python context_builder.py file1.py file2.md file3.txt
 <summary>📂 <strong>Project Files</strong></summary>
 
 ```bash
-# Combine specific project files with custom output
+# Using direct command (after pip install)
+context_builder src/main.py README.md config.json -o MyProject_context.md
+
+# OR using Python directly
 python context_builder.py src/main.py README.md config.json -o MyProject_context.md
 ```
 
@@ -97,7 +129,10 @@ python context_builder.py src/main.py README.md config.json -o MyProject_context
 <summary>🐍 <strong>Python Projects</strong></summary>
 
 ```bash
-# Process all Python files in src directory
+# Quick with short alias
+ctx "src/*.py"
+
+# OR traditional method
 python context_builder.py "src/*.py"
 ```
 
@@ -108,6 +143,9 @@ python context_builder.py "src/*.py"
 
 ```bash
 # Combine all documentation files
+context_builder "docs/*.md" README.md
+
+# Same thing the traditional way
 python context_builder.py "docs/*.md" README.md
 ```
 

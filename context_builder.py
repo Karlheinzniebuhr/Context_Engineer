@@ -175,10 +175,7 @@ By following these instructions, you will create a high-quality implementation g
         
         file_contents = []
         for i, info in enumerate(valid_files, 1):
-            file_contents.append(f"--- 
-### File {i}: `{info['name']}`
-
-```" + info.get('type','').lstrip('.') + f"\n{info['content']}\n```")
+            file_contents.append(f"---\n### File {i}: `{info['name']}`\n\n```" + info.get('type','').lstrip('.') + f"\n{info['content']}\n```")
 
         
         full_content = "\n\n".join([self.system_prompt] + header + file_manifest + file_contents)
