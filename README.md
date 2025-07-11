@@ -161,22 +161,26 @@ One of Context Builder's most **amazing features** is its intelligent repository
 
 ### 🎨 **Visual Project Structure**
 
-```text
-📁 MyAwesomeProject/
-├─ 📂 src/
-│  ├─ 🐍 main.py              # Core application logic
-│  ├─ 🔧 utils.py             # Utility functions  
-│  ├─ 📊 data_processor.py    # Data processing module
-│  └─ 🌐 api_client.py        # External API integration
-├─ 📂 tests/
-│  ├─ 🧪 test_main.py         # Main logic tests
-│  └─ 🔍 test_utils.py        # Utility function tests
-├─ 📂 docs/
-│  ├─ 📖 installation.md      # Setup instructions
-│  └─ 🎯 usage_guide.md       # How-to documentation
-├─ 📋 requirements.txt         # Dependencies
-├─ ⚙️ config.json             # Configuration file
-└─ 📚 README.md               # Project overview
+```
+MyAwesomeProject/
+│
+├── 📂 src/
+│   ├── 🐍 main.py              # Core application logic
+│   ├── 🔧 utils.py             # Utility functions
+│   ├── 📊 data_processor.py    # Data processing module
+│   └── 🌐 api_client.py        # External API integration
+│
+├── 📂 tests/
+│   ├── 🧪 test_main.py         # Main logic tests
+│   └── 🔍 test_utils.py        # Utility function tests
+│
+├── 📂 docs/
+│   ├── 📖 installation.md      # Setup instructions
+│   └── 🎯 usage_guide.md       # How-to documentation
+│
+├── 📋 requirements.txt         # Dependencies
+├── ⚙️ config.json             # Configuration file
+└── 📚 README.md               # Project overview
 ```
 
 </div>
