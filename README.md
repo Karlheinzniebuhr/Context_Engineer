@@ -1,262 +1,65 @@
-<div align="center">
+# 🎯 Context Builder
 
-# 🎯 **Context Builder**
+Transform your codebase into AI-ready implementation guides—in one command.
 
-*Transform your codebase into AI-ready implementation guides*
-
-[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)](https://github.com/yourusername/context-builder)
-
-</div>
+[![PyPI](https://img.shields.io/pypi/v/context-builder.svg)](https://pypi.org/project/context-builder)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## ✨ **What is Context Builder?**
+## 🚀 Quick Start
 
-Context Builder is an elegant file combiner that transforms scattered codebases into comprehensive, AI-ready implementation guides. Built from extensive research of top AI systems, it creates crystal-clear documentation that even less-capable AI agents can follow flawlessly.
+```bash
+# Install (Python 3.6+)
+pip install context-builder
 
-<div align="center">
-
-### 🎨 **The Magic**
-
+# Combine files into a single AI-ready guide
+ctx src/*.py README.md -o project_context.md
 ```
-📁 Multiple Files  →  🔧 Context Builder  →  📋 AI-Ready Guide  →  🤖 Perfect Implementation
-```
-
-</div>
 
 ---
 
-## 🌟 **Key Features**
+## ✨ Key Features
 
-<table>
-<tr>
-<td width="50%">
-
-### 🧠 **Intelligence**
-- **Smart File Detection** - Automatically categorizes and processes files
-- **Metadata Enrichment** - Adds comprehensive file information
-- **Error Prevention** - Robust handling with informative messages
-
-</td>
-<td width="50%">
-
-### 🚀 **Efficiency**
-- **Zero Dependencies** - Pure Python, works everywhere
-- **Flexible Input** - Glob patterns, multiple files, directories
-- **Clean Output** - Beautiful Markdown with syntax highlighting
-
-</td>
-</tr>
-</table>
-
-### 🎯 **AI-Optimized System Prompt**
-
-Built from analyzing **hundreds** of AI system prompts including:
-- 🔥 **Anthropic Claude** variants
-- 🤖 **OpenAI GPT-4** models  
-- 💻 **Cursor AI** development assistant
-- 🌊 **Windsurf** coding assistant
-- ❤️ **Lovable** development platform
+- 🧠 Smart File Detection: Auto-categorizes and enriches metadata
+- 🌐 Flexible Input: Files, directories, and glob patterns
+- 📋 Clean Markdown: Syntax-highlighted, ready for AI agents
+- ⚡ Zero Dependencies: Pure Python, no extra libraries
+- 🤖 AI-Optimized: System prompt tuned for flawless guides
 
 ---
 
-## 🚀 **Quick Start**
+## 📂 Project Layout (Example)
 
-### ⚡ **Installation via pip**
-
-#### Requirements
-- Python 3.6 or higher
-
-#### Steps
-
-```bash
-# Step 1: Clone the repository
-git clone https://github.com/yourusername/context-builder.git
-cd context-builder
-
-# Step 2: Install using pip (makes it directly executable!)
-pip install -e .
+```text
+MyProject/
+├── src/               # Source code
+├── tests/             # Test suite
+├── docs/              # Documentation
+├── requirements.txt   # Dependencies
+└── README.md          # Project overview
 ```
-
-After installation, use the `context_builder` command from anywhere, or its short alias `ctx`!
-
-### 🎮 **Basic Usage**
-
-<table>
-<tr>
-<td width="50%">
-
-#### ✨ **After pip install** (Recommended)
-```bash
-# Use the direct command
-context_builder file1.py file2.md file3.txt
-
-# Or use the short alias
-ctx file1.py file2.md file3.txt
-```
-
-</td>
-<td width="50%">
-
-#### 🐍 **Direct Python execution**
-```bash
-# Traditional method
-python context_builder.py file1.py file2.md file3.txt
-```
-
-</td>
-</tr>
-</table>
-
-### 🎨 **Advanced Examples**
-
-<details>
-<summary>📂 <strong>Project Files</strong></summary>
-
-```bash
-# Using direct command (after pip install)
-context_builder src/main.py README.md config.json -o MyProject_context.md
-
-# OR using Python directly
-python context_builder.py src/main.py README.md config.json -o MyProject_context.md
-```
-
-</details>
-
-<details>
-<summary>🐍 <strong>Python Projects</strong></summary>
-
-```bash
-# Quick with short alias
-ctx "src/*.py"
-
-# OR traditional method
-python context_builder.py "src/*.py"
-```
-
-</details>
-
-<details>
-<summary>📚 <strong>Documentation</strong></summary>
-
-```bash
-# Combine all documentation files
-context_builder "docs/*.md" README.md
-
-# Same thing the traditional way
-python context_builder.py "docs/*.md" README.md
-```
-
-</details>
 
 ---
 
-## 🏗️ **Repository Layout (Abridged)**
-
-One of Context Builder's most **amazing features** is its intelligent repository layout generation! It automatically creates a beautiful, structured overview of your project's architecture.
-
-### 🎨 **Example Output**
-
-```
-MyAwesomeProject/
-├── src/                     # 🐍 Source code
-│   ├── main.py             # Core application
-│   ├── utils.py            # Helper functions
-│   ├── data_processor.py   # Data handling
-│   └── api_client.py       # External APIs
-├── tests/                   # ✅ Test suite
-│   ├── test_main.py
-│   └── test_utils.py
-├── docs/                    # 📖 Documentation
-│   ├── installation.md
-│   └── usage_guide.md
-├── requirements.txt         # 📦 Dependencies
-├── config.json             # ⚙️ Configuration
-└── README.md               # 📝 Project info
-```
-
-### ✨ **What makes it special**
-
-- 🔍 **Smart categorization** - Automatically detects file types and purposes
-- 📊 **Line count analysis** - Shows relative file sizes for quick understanding
-- 🎨 **Beautiful formatting** - Clean, readable structure with helpful comments
-- 📱 **Universal compatibility** - Renders perfectly everywhere
-- 🤖 **AI-optimized** - Helps AI assistants understand your project instantly
-
-> *"This feature alone has saved me hours of explaining project structure to AI assistants!"*
-
----
-
-## 🎯 **Perfect For**
-
-<div align="center">
-
-| 🤖 **AI Development** | 📖 **Documentation** | 🔍 **Code Review** |
-|:---:|:---:|:---:|
-| Generate implementation guides for AI assistants | Create comprehensive project overviews | Prepare complete context for AI analysis |
-| Optimize prompts for Google AI Studio | Build onboarding materials | Generate implementation summaries |
-| Prepare codebases for AI agents | Combine scattered documentation | Create detailed project snapshots |
-
-</div>
-
----
-
-## 🎨 **Output Example**
+## 💎 Sample Output
 
 ```markdown
-# Final System Prompt for Implementation Guide Generation
-
-## **Objective:**
-To generate a detailed, explicit, and well-organized implementation guide...
-
-# Context Generated: 2024-07-11T18:17:29Z
-Total files processed: 3
+# Context Generated: 2025-07-11T19:00:00Z
+Total files: 3
 ---
-
 ## File Manifest
-### Source Code
-- `main.py` (45 lines)
-- `utils.py` (23 lines)
-
-### Documentation  
-- `README.md` (156 lines)
-
+- main.py (45 lines)
+- utils.py (30 lines)
+- config.json (20 lines)
 ---
-### File 1: `main.py`
-
+### File 1: main.py
 ```python
-class Calculator:
-    def add(self, a, b):
-        return a + b
+# (file contents...)
 ```
 ```
 
 ---
 
-## 🤝 **Contributing**
+**Try it now** → `ctx --help`
 
-<div align="center">
-
-We'd love your help making Context Builder even better!
-
-[![Issues](https://img.shields.io/badge/🐛-Report%20Issues-red)](https://github.com/yourusername/context-builder/issues)
-[![Pull Requests](https://img.shields.io/badge/🔧-Submit%20PRs-green)](https://github.com/yourusername/context-builder/pulls)
-[![Documentation](https://img.shields.io/badge/📚-Improve%20Docs-blue)](https://github.com/yourusername/context-builder)
-
-</div>
-
----
-
-## 📜 **License**
-
-<div align="center">
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-**Made with ❤️ for the AI development community**
-
-⭐ *Star this repo if you find it useful!* ⭐
-
-</div>
