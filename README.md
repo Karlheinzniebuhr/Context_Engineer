@@ -2,16 +2,22 @@
 
 Transform your codebase into AI-ready implementation guides—in one command.
 
-[![PyPI](https://img.shields.io/pypi/v/context-builder.svg)](https://pypi.org/project/context-builder)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 
 ---
 
 ## 🚀 Quick Start
 
+> **Note:** This is a local development project. Installation must be done from the cloned repository.
+
 ```bash
-# Install (Python 3.6+)
-pip install context-builder
+# Clone the repository
+git clone <your-repository-url>
+cd context-builder
+
+# Install locally in development mode (Python 3.6+)
+pip install -e .
 
 # Combine files - copies to clipboard by default
 ctx src/*.py README.md
